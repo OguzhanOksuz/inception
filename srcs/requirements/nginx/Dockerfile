@@ -11,7 +11,7 @@ COPY ./tools/nginx_start.sh /var/www
 RUN chmod +x /var/www/nginx_start.sh
 RUN mkdir -p /run/ngnix
 
-ENTRYPOINT ["var/www/ngnix_start.sh"]
+ENTRYPOINT ["var/www/nginx_start.sh"]
 
 EXPOSE 443
 
