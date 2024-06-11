@@ -29,8 +29,6 @@ services:
       - mariadb
     build: ./requirements/wordpress
     restart: always
-    env_file:
-      - .env
     volumes:
       - wordpress_data:/var/www/html
     networks:
@@ -48,6 +46,18 @@ services:
       - wordpress_data:/var/www/html
     networks:
       - network
+
+  ftp:
+    build: requirements/bonus/ftp
+    container_name: ftp
+    ports:
+      - "21:21"
+      - "21100-21110:21100-21110"
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - network
+    restart: always
 
 volumes:
   mariadb_data:
