@@ -1,13 +1,12 @@
 FROM debian:buster
 
 RUN apt-get update
-RUN apt-get -y install php7.3
-RUN apt-get -y install php-mysqli 
-RUN apt-get -y install php-fpm
-RUN apt-get -y install wget
+RUN apt-get -y install php7.3 php-mysqli php-fpm wget
+
 
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d
 COPY ./tools/wordpress_start.sh /var/www/
+COPY ./conf/wp-config.php /var/www/
 
 EXPOSE 9000
 
