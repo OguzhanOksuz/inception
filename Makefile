@@ -16,10 +16,9 @@ clean:
 	docker volume rm $$(docker volume ls -q)	|| true
 	docker network rm $$(docker network ls -q)	|| true
 	rm -rf /home/data/wordpress			|| true
-	rm -rf /home/data/mysql				|| true
+	rm -rf /home/data/mariadb			|| true
 	
-re:
-	docker-compose -f ./srcs/docker-compose.yml up --build
+re: clean up
 
 .PHONY: all up down clean re
 

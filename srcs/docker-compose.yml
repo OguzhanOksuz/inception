@@ -21,8 +21,6 @@ services:
     networks:
       - network
     restart: always
-    env_file:
-      - .env
 
   wordpress:
     container_name: wordpress
@@ -42,7 +40,7 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/data/mysql
+      device: /home/data/mariadb
       o: bind
   wordpress_data:
     driver: local
