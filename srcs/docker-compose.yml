@@ -3,12 +3,8 @@ version: '3'
 services:
 
   nginx:
-    container_name: ngnix
-    build: ./requirements/ngnix
-    depends_on:
-      - adminer
-      - redis
-      - hugo
+    container_name: nginx
+    build: ./requirements/nginx
     ports:
       - 443:443
     volumes:
@@ -32,7 +28,7 @@ services:
     container_name: wordpress
     depends_on:
       - mariadb
-    build: ./requirments/wordpress
+    build: ./requirements/wordpress
     restart: always
     env_file:
       - .env
