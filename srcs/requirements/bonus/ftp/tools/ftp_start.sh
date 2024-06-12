@@ -1,16 +1,18 @@
 #!/bin/sh
 
-if [ ! -f "/etc/vsftpd/vsftpd.conf.bak" ]
+if [ ! -f "/etc/vsftpd.userlist" ]
 then
 
     mkdir -p /var/www/html
+    mkdir -p /var/run/vsftpd/empty
+    mv /var/www/vsftpd.conf /etc/vsftpd/vsftpd.conf
 
-    cp /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf.bak
-    mv /tmp/vsftpd.conf /etc/vsftpd/vsftpd.conf
+    useradd -m -s /bin/bash $FTP_USER
+    echo $FTP_USER > /etc/vsftpd.userlist
+    echo "$FTP_USER:$FTP_PASSWORD" | /usr/sbin/chpasswd &> /dev/null
 
-    adduser $FTP_USER --disabled-password
     chown -R $FTP_USER:$FTP_USER /var/www/html
-
 
 fi
 
+/usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf

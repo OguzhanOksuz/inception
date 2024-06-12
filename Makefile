@@ -18,7 +18,8 @@ clean:
 	rm -rf /home/data/wordpress			|| true
 	rm -rf /home/data/mariadb			|| true
 	
-re: clean up
+re:
+	docker-compose -f ./srcs/docker-compose.yml up --build
 
 .PHONY: all up down clean re
 
