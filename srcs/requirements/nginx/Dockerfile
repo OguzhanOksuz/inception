@@ -3,6 +3,7 @@ FROM debian:buster
 RUN apt-get update
 RUN apt-get install -y nginx
 RUN apt-get install -y openssl
+RUN apt-get install -y haveged
 
 RUN mkdir /etc/nginx/ssl
 COPY ./conf/nginx.conf /etc/nginx/sites-enabled/default
